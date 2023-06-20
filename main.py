@@ -50,7 +50,7 @@ def create_student():
     if not validate_string(apellido):
         return
     
-    edad = int(input("Ingrese la edad: "))
+    edad = input("Ingrese la edad: ")
     if not validate_age(edad):
         return
 
@@ -91,7 +91,11 @@ def get_students():
         conn.close()
 
 def update_student():
-    student_id = int(input("Ingrese el ID del estudiante a actualizar: "))
+    try:
+        student_id = int(input("Ingrese el ID del estudiante a actualizar: "))
+    except ValueError:
+        print("El ID debe ser un número entero válido.")
+        return
 
     nombre = sanitize_string(input("Ingrese el nuevo nombre: "))
     if not validate_string(nombre):
@@ -122,7 +126,11 @@ def update_student():
         conn.close()
 
 def delete_student():
-    student_id = int(input("Ingrese el ID del estudiante a eliminar: "))
+    try:
+        student_id = int(input("Ingrese el ID del estudiante a eliminar: "))
+    except ValueError:
+        print("El ID debe ser un número entero válido.")
+        return
 
     conn = connect()
     
